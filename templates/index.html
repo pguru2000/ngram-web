@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+{% block css %}
+    <style>
+        #process-section {
+            padding-top: 50px;
+        }
+        #process-section p {
+            margin-top: 2rem;
+            margin-bottom: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid"><!-- Basic form layout section start -->
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-4 align-content-center">
+                <div class="card">
+                     <div class="card-body">
+                        <div class="px-3">
+                            <form class="form" processurl="/uploadfiles" id="zipfileform" enctype="multipart/form-data">
+                                <div class="form-body">
+                                    <h4 class="form-section">
+                                        <i class="icon-book-open"></i>Select Zip File</h4>
+                                    <div class="form-group">
+                                        <label>Zip File</label>
+                                        <input type="file" class="form-control-file" id="zipfile" onchange="">
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-danger mr-1" onclick = "javascript:selectcancel()">
+                                        <i class="icon-trash"></i> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-success" onclick="javascript:submitTemplate()">
+                                        <i class="icon-note"></i> Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 align-content-center">
+                <div class="card">
+                     <div class="card-body">
+                        <div class="px-3">
+                            <form class="form" id="process_data" enctype="multipart/form-data">
+                                <div class="form-body">
+                                    <h4 class="form-section">
+                                        <i class="icon-book-open"></i>Process Data</h4>
+                                </div>
+                                <div style="height:77px"></div>
+                                <div class="form-actions">
+                                    <button type="button" class = "btn btn-primary" onclick="javascript:calcNgram()">
+                                        <i class="icon-rocket"></i> Calculate Ngram
+                                    </button>
+                                    <button type="button" class = "btn btn-primary" onclick="javascript:startProcess()">
+                                        <i class="icon-rocket"></i> Start Process
+                                    </button>
+                                    
+                                    <a id = "download_pdf" class = "btn btn-success" style="color: white" download>
+                                        download pdf
+                                    </a>
+                                    <a id = "download_png" class = "btn btn-success" style="color: white" download>
+                                        download png
+                                    </a>
+
+                                    <button type="button" class = "btn btn-danger" onclick = "javascript:resetfunc()">
+                                        <i class="icon-refresh"></i> Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="process-section">
+    </div>
+    
+<!-- // Basic form layout section end -->
+    <audio id="alert" src="static/audio/alert.mp3" preload="auto"></audio>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    var is_uploadfile = false;
+    var calc_ngram = false;
+    var download_root = "";
+    var process_finished = false;
+    var alert_audio = document.getElementById('alert');    
+
+    function initfiles()
+    {
+        $("#zipfile").val('');       
+        is_uploadfile = false;
+    }
+
+    function selectcancel()
+    {
+        initfiles();
+    }
+
+    function deletefiles() {
+
+        data = {
+            'file_root': 'aaa'
+        };
+
+        showloading();
+        $.ajax({
+            url: "deletefiles",
+            method:"POST",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (data) {
+                showloading(false);
+                console.log("success");
+            },
+            error: function(data){
+                console.log("error");
+            }
+        });
+    }
+
+    function resetfunc(){
+        initfiles();
+        deletefiles();
+        $('#process-section').html('');
+        {#$("#download_pdf").removeAttr("href");#}
+        {#$("#download_png").removeAttr("href");#}
+    }
+
+    function showloading(show){
+        show = show == undefined ? true: show;
+        if(show){
+            $("#loading").css("display", "");
+            $("#waiting").addClass("modal-backdrop fade in");
+        }
+        else{
+            $("#loading").css("display", "None");
+            $("#waiting").removeClass("modal-backdrop fade in");
+        }
+    }
+
+   
+    
+    function submitTemplate(){
+        var zipform = new FormData($("#zipfileform")[0]);
+        //var excelform = new FormData($("#excefileform")[0]);
+        //var zipfilename = $("#zipfilename").val();
+        var zipfile = $("#zipfile").prop("files")[0];
+
+        if(zipfile == null){
+            alert("please select zip file");
+            return;
+        }
+
+        if( !zipfile.name.endsWith(".zip") ){
+            alert("please select zip file");
+            return;
+        }
+        $('#process-section').html('');
+        
+        showloading();
+        //zipform.append("zipfilename", zipfilename);
+        zipform.append("zipfile", zipfile);
+
+        $.ajax({
+            url: "uploadfiles",
+            method:"POST",
+            data: zipform,
+            processData:false,
+            contentType:false,
+            success: function (data) {
+                showloading(false);
+                console.log(data);
+                
+                alert_audio.play();
+                setTimeout(function(){
+                    if (data['success'] == 1){
+                        alert('Your data have been uploaded successfully and no problem has been detected.');
+                        is_uploadfile = true;
+                        return;
+                    }
+
+                    else if (data['success'] == 2){
+                        alert('Unzip Error.');
+                        is_uploadfile = false;
+                        return;
+                    }
+
+                    else if (data['success'] == 3){
+                        alert('Create gram file fail.');
+                        is_uploadfile = false;
+                        return;
+                    }
+
+                    else {
+                        alert('something went wrong');
+                        is_uploadfile = false;
+                        return;
+                    }
+                },1000);
+
+
+                
+            },
+            error: function(data){
+                console.log(data);
+                showloading(false);
+            }
+        });
+    }
+
+    function calcNgram() {
+        if(is_uploadfile == false){
+            alert('please upload data first');
+            return;
+        }
+        $("input").attr('disabled','disabled');
+        $("button").attr('disabled','disabled');
+        $('#process-section').html('');
+        showloading();
+        $.ajax({
+            url: "calcngram",
+            method:"POST",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                showloading(false);
+                $('#process-section').hide();
+                alert_audio.play();
+
+                setTimeout(function(){
+                    if(data['success'] == 1){
+                        calc_ngram = true;
+                        alert('Calculated Ngram!');
+                    }
+                    else{
+                        alert('ngram calculation failed');
+                        calc_ngram = false;
+
+                    }
+                    $("input").removeAttr('disabled');
+                    $("button").removeAttr('disabled');
+                },3000);
+
+                
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
+
+        var valuemin = 0;
+        $("#process-section").css("display", "");
+        var refreshIntervalId = setInterval(function(){
+          $.ajax({
+                url: "ngramprocess",
+                method:"POST",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    // showloading(false);
+
+                    if(data['success'] == 1){
+
+                        var valuenow = data['valuenow'];
+                        var valuemax = data['valuemax'];
+                        if (valuemax < 2000 || valuenow == -1) {
+                            clearInterval(refreshIntervalId);
+                            $("#process-section").hide();
+                        }
+                        else {
+                            var html = '<h2>Creating ngram</h2>';
+
+                            percent = Math.floor(valuenow * 100 / valuemax);
+
+                            html += '<div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="' + valuenow + '" aria-valuemin="' + valuemin + '" aria-valuemax="' + valuemax + '" style="width:' + percent + '%"> ' + percent + '% </div></div>';
+
+
+                            $('#process-section').html(html);
+
+                            if (percent == 100) {
+                                clearInterval(refreshIntervalId);
+                                // alert_audio.play();
+
+                                // setTimeout(function(){
+                                    // alert('Calculated Ngram!');
+                                    // $("input").removeAttr('disabled');
+                                    // $("button").removeAttr('disabled');
+                                // },3000);
+                            }
+                        }
+                        
+
+                    }
+                    else{
+                        alert('fail');
+
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                    showloading(false);
+                }
+            });
+        }, 10000);
+        // clearInterval(refreshIntervalId);
+    }
+    
+    function startProcess(){
+        
+        if(is_uploadfile == false){
+            alert('please upload data first');
+            return;
+        }
+        if(calc_ngram == false){
+            alert('please calculate ngram first');
+            return;
+        }
+        $("input").attr('disabled','disabled');
+        $("button").attr('disabled','disabled');
+        $('#process-section').html('');
+        showloading();
+        $.ajax({
+            url: "startprocess",
+            method:"POST",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                alert_audio.play();
+                showloading(false);
+                $("#process-section").hide();
+                setTimeout(function(){
+                   
+
+                    if(data['success'] == 1){
+                         alert('Process finished');
+                        $("input").removeAttr('disabled');
+                        $("button").removeAttr('disabled');
+                   
+                        result_file_name = data['result_file_name'];
+                        pdf_download_root = 'static/result/' +  result_file_name + '.pdf';
+                        png_download_root = 'static/result/' +  result_file_name + '.png';
+                        process_finished = true;
+                        document.getElementById('download_pdf').href = pdf_download_root;
+                        document.getElementById('download_png').href = png_download_root;
+                    }
+                    else{
+                        alert('fail');
+                        process_finished = true;
+                    }
+                },3000);             
+                
+                
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+        console.log('ajax2')
+        
+        $("#process-section").css("display", "");    
+        var refreshIntervalId = setInterval(function(){
+          $.ajax({
+                url: "checkprocess",
+                method:"POST",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    // showloading(false);
+                    
+                    if(data['success'] == 1){
+                        var arr_process = data['check_process'];
+                        var html = '<h2>Processing Status</h2>';
+                        var finished_flag = true;
+                        var i;
+                        for (i = 0; i < arr_process.length; i++) {
+
+
+                            step = i + 1;
+                            valuemin = 0;
+                            valuenow = arr_process[i][0];
+                            valuemax = arr_process[i][1];
+                            percent = Math.floor(valuenow * 100 / valuemax);
+                            if (percent != 100)
+                                finished_flag = false;
+                            html += '<p>Process ' + step +':</p> <div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="' + valuenow + '" aria-valuemin="' + valuemin + '" aria-valuemax="' + valuemax + '" style="width:' + percent + '%"> ' + percent + '% </div></div>';
+                        }
+                        
+                        $('#process-section').html(html);
+
+                        if (finished_flag) {
+                            clearInterval(refreshIntervalId);
+                            // alert_audio.play();
+
+                            // setTimeout(function(){
+                            //     alert('Process finished');
+                            //     $("input").removeAttr('disabled');
+                            //     $("button").removeAttr('disabled');
+                            // },3000);
+                        }
+
+                    }
+                    else{
+                        alert('fail');
+                        
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                    showloading(false);
+                }
+            });
+        }, 10000);
+        // clearInterval(refreshIntervalId);
+           
+    }
+
+    function startDownload(){
+
+    }
+
+    $(document).ready(function() {
+        
+    });
+
+
+</script>
+{% endblock %}

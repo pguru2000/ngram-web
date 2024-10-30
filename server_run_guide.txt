@@ -1,0 +1,15 @@
+cd ..
+$ source my_env/bin/activate
+
+ps all
+kill {port}
+screen
+killall python3.7
+
+screen
+
+
+python3 manage.py runserver 0.0.0.0:8000
+
+to kill port 8000
+sudo fuser -k 8000/tcp

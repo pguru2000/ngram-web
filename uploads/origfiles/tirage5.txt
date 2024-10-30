@@ -1,0 +1,48 @@
+#start-meta_title#
+<first-letter-in-capital>$mot-cle</first-letter-in-capital> $ville - $nom-entreprise
+#end-meta_title#
+
+#start-meta_description#
+<cond-autre>Cliquez ici si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle à $ville !</cond-autre>
+<cond-pisciniste>Si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle à $ville en ce moment-même, vous êtes au bon endroit !</cond-pisciniste>
+<cond-prestation>Si vous recherchez un piscinier basé à $ville pour exécuter <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle, vous êtes au bon endroit !</cond-prestation>
+<cond-produit>Vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle et vous êtes à $ville ou aux alentours ? Vous êtes au bon endroit !</cond-produit>
+#end-meta_description#
+
+#start-image1#
+
+#end-image1#
+
+#start-h1#
+<cond-autre>Voici un certain nombre de choses que vous devez prendre en compte si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle à $ville</cond-autre>
+<cond-pisciniste>Voici un certain nombre de choses que vous devez prendre en compte si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle à $ville</cond-pisciniste>
+<cond-prestation>Voici un certain nombre de choses que vous devez prendre en compte si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> pisciniste basé à $ville pour exécuter <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle</cond-prestation>
+<cond-produit>Voici un certain nombre de choses que vous devez prendre en compte si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle à $ville</cond-produit>
+#end-h1#
+
+#start-section3#
+<cond-produit><title>Savez-vous quels sont les équipements que vous allez devoir commander pour votre piscine ?</title>
+
+Contactez-nous si vous recherchez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> $mot-cle. Le rôle du liner c'est de protéger votre piscine de toute fuite ou fissure. Il est vrai que l'entretien d'une piscine peut être fastidieux. Il y a toutefois des possibilités de vous faciliter la tâche. Évidemment, il faut vite commander un robot de piscine. Cet appareil indispensable vous aidera à garder l'eau propre et claire sans être contraint d'y passer des heures. Il s'occupe de nettoyer l'eau et supprime les petites impuretés qui se déposent au fond de la piscine. Vous pouvez par la même occasion acheter une pompe à chaleur, ça vous sera très utile pour maintenir l'eau à une température appréciable toute l'année. Si vous avez une piscine extérieure, vous devrez veiller à la recouvrir d'une couverture de piscine pendant les longues périodes d'inutilisation. Elle permettra de restreindre la déperdition de chaleur et bien entendu, ça vous permettra de faire de substantielles économies au niveau de vos dépenses de chauffage. Autre bénéfice d'une couverture de piscine et pas des moindres : elle empêche les feuilles voire d’autres débris de tomber dans l’eau. Une clôture représente bien entendu un investissement utile pour des raisons de sécurité, encore plus si vos enfants sont encore petits.
+</cond-produit>
+#end-section3#
+
+#start-section1#
+<cond-pisciniste><title>Ce qu'il faut savoir sur le métier de pisciniste</title>
+
+<strong><first-letter-in-capital><permute-or>pisciniste, piscinier ou constructeur de piscines</permute-or></first-letter-in-capital></strong> sont 3 manières de désigner une personne ou une entreprise spécialisées dans <strong>la conception, la construction et la pose de piscines</strong>. Il peut s’agir <permute-or>d’une entreprise de maçonnerie ou d’un maçon</permute-or>. Lorsque c’est un indépendant, il s’agit généralement d’un artisan. D'une manière générale, celui que l'on nomme « technicien de piscine » travaille sur des tâches de maintenance comme <permute-or>le nettoyage des filtres ou le remplacement de petits appareillages</permute-or>. Son rôle : veiller à ce que la qualité de l'eau soit optimale. Pour la plupart des professionnels, <strong><permute-and>constructeurs de piscines, piscinistes et pisciniers</permute-and></strong> ne définissent pas les mêmes métiers : tandis que certains implantent et réparent des piscines, d’autres les construisent chez les clients. À $ville comme ailleurs, les piscinistes sont responsables de l'installation et de l'entretien de la plomberie et des équipements dont une piscine est habituellement formée. Ils sont bien entendu en mesure de déterminer l'origine des quelques soucis que les propriétaires de piscines peuvent subir et y apporter une solution.
+</cond-pisciniste>
+#end-section1#
+
+#start-section9#
+<title>Ce qu'il faut savoir vis-à-vis de votre projet de piscine à $ville</title>
+
+Le <strong>piscinier</strong> qui se déplacera chez vous est un professionnel dont la spécialité consiste à se charger de la création puis de la réalisation et de l'entretien de piscines. Il est indispensable de lui poser des questions au sujet de la réglementation et tout spécialement au sujet des déclarations administratives dont il faut à tout prix s'occuper dans le cadre de la construction de votre piscine. D’autant qu’il y a parfois des singularités locales à appréhender. Posez-lui surtout des questions <permute>sur les différentes étapes de la construction, sur les garanties, sur les tâches d’entretien et de maintenance, sur les incidents qui peuvent éventuellement survenir, les points vis-à-vis desquels il faut être prudent</permute>, etc. Quel matériau sera utilisé pour la construction de votre piscine ? Quel <strong>style de piscine</strong> allez-vous privilégier pour votre maison ? Y a-t-il une configuration qui semble problématique à mettre en place ou au contraire idéale chez vous ? C’est utile de savoir pourquoi, si c'est le cas. Enfin, à quelle date est-ce que les prestations seront finalisées ? Intéressez-vous à la réputation et aux garanties que peut vous offrir le spécialiste auquel vous envisagez de faire appel. Est-il membre d'un <strong>syndicat des professionnels de la piscine</strong> ? Avez-vous consulté <strong>les avis déposés par ses clients</strong> ici ou là ? L'entreprise jouit-elle d'un <strong>label de qualité</strong> ? Est-ce qu’elle dispose d’une <strong>charte de qualité</strong> ? Le cas échéant, vous l’a-t-elle remise ? De <strong>combien d’années d’expérience</strong> dispose-t-elle ? Est-elle en mesure de vous amener sur des chantiers en cours de réalisation ou terminés, à $ville ou dans des localités proches ?
+
+#end-section9#
+
+#start-conclusion#
+
+Chez $nom-entreprise, notre métier, en tant que spécialistes de la construction de piscines à $ville, nous a permis de développer une expertise qui nous permet d'appréhender les différents types de piscines en prenant en considération <strong>leurs contraintes spécifiques et les matériaux qu'il faut employer pour les construire</strong>. Outre la réalisation de piscines neuves, nous avons qui plus est de l'expérience en ce qui concerne la réparation de piscines et nous sommes donc totalement en mesure d'intervenir pour solutionner ce type de problème. Nous sommes donc en mesure de <strong>dessiner, créer, implanter, restaurer et entretenir toutes sortes de piscines</strong>. Vous êtes particulièrement intéressé par <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> <a href="$URL-MC-lien-1">$MC-lien-1 à $lien-1-ville</a> ? À moins que vous ne recherchiez <cond-mc-fem>une</cond-mc-fem><cond-mc-masc>un</cond-mc-masc><cond-mc-plur>des</cond-mc-plur><cond-mc-indefini>de</cond-mc-indefini> <strong>$mot-cle <a href="$URL-commune2">à $commune-lien2</a></strong><cond-priorite1-et-2>, </cond-priorite1-et-2><cond-priorite3> ou </cond-priorite3><a href="$URL-commune3">$commune-lien3</a><cond-priorite1>, </cond-priorite1><cond-priorite2> ou </cond-priorite2><a href="$URL-commune4">$commune-voisine4</a><cond-priorite1> ou <a href="$URL-commune5">$commune-voisine5</a></cond-priorite1> ? Et si nous en parlions ensemble ? Enfin, si vous avez besoin d'une information plus globale, <strong>vous pouvez cliquer ici : <a href="$URL-mere">$mere</a></strong>.
+
+#end-conclusion#

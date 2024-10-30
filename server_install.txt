@@ -1,0 +1,11 @@
+digital ocean
+https://tecadmin.net/create-python-virtual-environment-ubuntu/
+aws
+https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-python3-boto3/
+sudo apt update
+sudo apt install python3-pip
+
+Confirm the pip3 installation:
+
+pip3 -V
+source myenv/bin/activate
